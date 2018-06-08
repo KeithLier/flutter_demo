@@ -19,8 +19,46 @@ class AppMeState extends State<AppMe> {
         appBar: new AppBar(
           title: new Text("我"),
         ),
-        body: new Center(
-          child: new Text("Hello Me"),
+        body: new ListView(
+          children: <Widget>[
+            new ListTile(
+              leading: new Icon(
+                Icons.account_balance_wallet,
+              ),
+              title: new Text("钱包"),
+            ),
+            new ListTile(
+              leading: new Icon(
+                Icons.check_box_outline_blank,
+              ),
+              title: new Text("收藏"),
+            ),
+            new ListTile(
+              leading: new Icon(
+                Icons.photo_library,
+              ),
+              title: new Text("相册"),
+            ),
+            new ListTile(
+              leading: new Icon(
+                Icons.credit_card,
+              ),
+              title: new Text("卡包"),
+            ),
+            new ListTile(
+              leading: new Icon(
+                Icons.tag_faces,
+              ),
+              title: new Text("表情"),
+            ),
+            new ListTile(
+              leading: new Icon(
+                Icons.settings,
+              ),
+              title: new Text("设置"),
+            ),
+          ],
+
         ),
       ),
     );
