@@ -34,6 +34,7 @@ class AppMainState extends State<AppMain> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+
     return new MaterialApp(
       home: new Scaffold(
         body: new TabBarView(
@@ -46,7 +47,7 @@ class AppMainState extends State<AppMain> with SingleTickerProviderStateMixin {
             ]
         ),
         bottomNavigationBar: new Material(
-          color: Colors.black12,
+          color: Colors.grey[100],
           child: new TabBar(
             controller: controller,
             labelColor: Colors.black,

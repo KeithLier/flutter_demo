@@ -15,12 +15,16 @@ class AppContactState extends State<AppContact> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new MaterialApp(
+      theme: new ThemeData(
+        primaryColor: Colors.grey[100],
+        primaryColorBrightness: Brightness.light,
+      ),
       home: new Scaffold(
         appBar: new AppBar(
           title: new Text("通讯录"),
         ),
-        body: new Center(
-          child: new Text("Hello Contact"),
+        body: new ListView(
+
         ),
       ),
     );

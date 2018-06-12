@@ -15,6 +15,10 @@ class AppDiscoverState extends State<AppDiscover> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new MaterialApp(
+      theme: new ThemeData(
+        primaryColor: Colors.grey[100],
+        primaryColorBrightness: Brightness.light,
+      ),
       home: new Scaffold(
         appBar: new AppBar(
           title: new Text("发现"),

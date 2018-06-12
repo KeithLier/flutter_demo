@@ -15,6 +15,10 @@ class AppMeState extends State<AppMe> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return new MaterialApp(
+      theme: new ThemeData(
+        primaryColor: Colors.grey[100],
+        primaryColorBrightness: Brightness.light,
+      ),
       home: new Scaffold(
         appBar: new AppBar(
           title: new Text("我"),
