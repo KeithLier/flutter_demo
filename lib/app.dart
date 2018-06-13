@@ -15,71 +15,27 @@ class AppMain extends StatefulWidget {
   }
 }
 
-class AppMainState extends State<AppMain> with SingleTickerProviderStateMixin {
+class AppMainState extends State<AppMain> {
 
-  TabController controller;
-
+  final List<BottomNavigationBarItem> listSet = [new BottomNavigationBarItem(icon: new Icon(Icons.chat,color: Colors.grey),title: new Text("微信"),),
+  new BottomNavigationBarItem(icon: new Icon(Icons.perm_contact_calendar,color: Colors.grey,),title: new Text("通讯录"),),
+  new BottomNavigationBarItem(icon: new Icon(Icons.room,color: Colors.grey),title: new Text("发现"),),
+  new BottomNavigationBarItem(icon: new Icon(Icons.perm_identity,color: Colors.grey),title: new Text("我"),),
+  ];
+  final List<StatefulWidget> vcSet = [new AppHome(),new AppContact(),new AppDiscover(),new AppMe()];
+  int _sindex=0;
   @override
-  void initState() {
-    // TODO: implement initState
-    controller = new TabController(length: 4, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    return new MaterialApp(
-      home: new Scaffold(
-        body: new TabBarView(
-            controller: controller,
-            children: [
-              new AppHome(),
-              new AppContact(),
-              new AppDiscover(),
-              new AppMe(),
-            ]
-        ),
-        bottomNavigationBar: new Material(
-          color: Colors.grey[100],
-          child: new TabBar(
-            controller: controller,
-            labelColor: Colors.black,
-            tabs:[
-              new Tab(
-                text: "微信",
-                icon: new Icon(
-                  Icons.message,
-                ),
-              ),
-              new Tab(
-                text: "通讯录",
-                icon: new Icon(
-                  Icons.contacts,
-                ),
-              ),
-              new Tab(
-                text: "发现",
-                icon: new Icon(
-                  Icons.contact_mail,
-                ),
-              ),
-              new Tab(
-                text: "我",
-                icon: new Icon(
-                  Icons.people,
-                ),
-              ),
-            ],
-          ),
-        ),
+  Widget build(BuildContext context){
+    return new Scaffold(
+      bottomNavigationBar: new BottomNavigationBar(items: listSet,type: BottomNavigationBarType.fixed,
+        onTap: (int index){
+          setState(() {
+            _sindex = index;
+          });
+        },
+        currentIndex: _sindex,
       ),
+      body: vcSet[_sindex],
     );
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'chat.dart';
 
 class AppHome extends StatefulWidget {
   AppHome({Key key, this.title}) : super(key: key);
@@ -21,6 +21,9 @@ class AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
       title: new Text(item['title']),
       subtitle: new Text(item['subtitle']),
       trailing: new Text(item['date']),
+      onTap: (){
+        Navigator.of(context).pushNamed("/chat");
+      },
     );
   }
   

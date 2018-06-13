@@ -23,8 +23,33 @@ class AppDiscoverState extends State<AppDiscover> {
         appBar: new AppBar(
           title: new Text("发现"),
         ),
-        body: new Center(
-          child: new Text("Hello Discover"),
+        body: new ListView(
+          children: <Widget>[
+            new Container(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: new Container(
+                height: 50.0,
+                child: new ListTile(
+                  leading: new Icon(Icons.camera),
+                  title: new Text("朋友圈"),
+                ),
+                color: Colors.white,
+              ),
+              color: Colors.grey[200],
+            ),
+            new Container(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: new Container(
+                height: 50.0,
+                child: new ListTile(
+                  leading: new Icon(Icons.crop_free),
+                  title: new Text("扫一扫"),
+                ),
+                color: Colors.white,
+              ),
+              color: Colors.grey[200],
+            ),
+          ],
         ),
       ),
     );
