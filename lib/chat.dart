@@ -17,10 +17,10 @@ class AppChatState extends State<AppChat> {
     // TODO: implement build
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("发现"),
+        title: new Text("Chat"),
       ),
       body: new Center(
-        child: new Text("Hello Discover"),
+        child: new Text("Hello Chat"),
       ),
     );
   }

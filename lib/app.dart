@@ -17,10 +17,23 @@ class AppMain extends StatefulWidget {
 
 class AppMainState extends State<AppMain> {
 
-  final List<BottomNavigationBarItem> listSet = [new BottomNavigationBarItem(icon: new Icon(Icons.chat,color: Colors.grey),title: new Text("微信"),),
-  new BottomNavigationBarItem(icon: new Icon(Icons.perm_contact_calendar,color: Colors.grey,),title: new Text("通讯录"),),
-  new BottomNavigationBarItem(icon: new Icon(Icons.room,color: Colors.grey),title: new Text("发现"),),
-  new BottomNavigationBarItem(icon: new Icon(Icons.perm_identity,color: Colors.grey),title: new Text("我"),),
+  final List<BottomNavigationBarItem> listSet =
+  [new BottomNavigationBarItem(
+    icon: new Icon(Icons.chat,color: Colors.grey),
+    title: new Text("微信"),
+  ),
+  new BottomNavigationBarItem(
+    icon: new Icon(Icons.perm_contact_calendar,color: Colors.grey,),
+    title: new Text("通讯录"),
+  ),
+  new BottomNavigationBarItem(
+    icon: new Icon(Icons.room,color: Colors.grey),
+    title: new Text("发现"),
+  ),
+  new BottomNavigationBarItem(
+    icon: new Icon(Icons.perm_identity,color: Colors.grey),
+    title: new Text("我"),
+  ),
   ];
   final List<StatefulWidget> vcSet = [new AppHome(),new AppContact(),new AppDiscover(),new AppMe()];
   int _sindex=0;

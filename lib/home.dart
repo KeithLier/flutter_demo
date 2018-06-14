@@ -22,7 +22,13 @@ class AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
       subtitle: new Text(item['subtitle']),
       trailing: new Text(item['date']),
       onTap: (){
-        Navigator.of(context).pushNamed("/chat");
+        Navigator.of(context).push(
+          new MaterialPageRoute(
+              builder: (context){
+                return new AppChat();
+              }
+          )
+        );
       },
     );
   }
