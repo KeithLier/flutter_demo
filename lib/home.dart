@@ -56,6 +56,12 @@ class AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
       home: new Scaffold(
         appBar: new AppBar(
           title: new Text("微信"),
+          actions: <Widget>[
+            new IconButton(
+                icon: new Icon(Icons.add,color: Colors.black,),
+                onPressed: null
+            ),
+          ],
         ),
         body: new Scrollbar(
           child: new ListView(

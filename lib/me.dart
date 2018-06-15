@@ -125,7 +125,6 @@ class AppMeState extends State<AppMe> {
               color: Colors.grey[200],
             ),
           ],
-
         ),
       ),
     );
