@@ -22,7 +22,7 @@ class AppMeState extends State<AppMe> {
       home: new Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: new AppBar(
-          title: new Text("我"),
+          title: new Text('我'),
         ),
         body: new ListView(
           children: <Widget>[
@@ -32,8 +32,8 @@ class AppMeState extends State<AppMe> {
                 height: 80.0,
                 child: new ListTile(
                   leading: new Icon(Icons.people),
-                  title: new Text("Charles&Keith"),
-                  subtitle: new Text("微信号：charleskeith"),
+                  title: new Text('Charles&Keith'),
+                  subtitle: new Text('微信号：charleskeith'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                   onTap: (){
 //                    Navigator.of(context).push(
@@ -54,7 +54,7 @@ class AppMeState extends State<AppMe> {
               child: new Container(
                 child: new ListTile(
                   leading: new Icon(Icons.call_to_action),
-                  title: new Text("钱包"),
+                  title: new Text('钱包'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                   onTap: (){
 //                    Navigator.of(context).push(
@@ -76,7 +76,7 @@ class AppMeState extends State<AppMe> {
               child: new Container(
                 child: new ListTile(
                   leading: new Icon(Icons.dashboard),
-                  title: new Text("收藏"),
+                  title: new Text('收藏'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                 ),
                 color: Colors.white,
@@ -87,7 +87,7 @@ class AppMeState extends State<AppMe> {
             new Container(
               child: new ListTile(
                 leading: new Icon(Icons.photo),
-                title: new Text("相册"),
+                title: new Text('相册'),
                 trailing: new Icon(Icons.keyboard_arrow_right),
               ),
               color: Colors.white,
@@ -96,7 +96,7 @@ class AppMeState extends State<AppMe> {
             new Container(
               child: new ListTile(
                 leading: new Icon(Icons.credit_card),
-                title: new Text("卡包"),
+                title: new Text('卡包'),
                 trailing: new Icon(Icons.keyboard_arrow_right),
               ),
               color: Colors.white,
@@ -105,7 +105,7 @@ class AppMeState extends State<AppMe> {
             new Container(
               child: new ListTile(
                 leading: new Icon(Icons.tag_faces),
-                title: new Text("表情"),
+                title: new Text('表情'),
                 trailing: new Icon(Icons.keyboard_arrow_right),
               ),
               color: Colors.white,
@@ -116,7 +116,7 @@ class AppMeState extends State<AppMe> {
               child: new Container(
                 child: new ListTile(
                   leading: new Icon(Icons.settings),
-                  title: new Text("设置"),
+                  title: new Text('设置'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                 ),
                 color: Colors.white,

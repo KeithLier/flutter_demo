@@ -22,7 +22,7 @@ class AppDiscoverState extends State<AppDiscover> {
       home: new Scaffold(
         backgroundColor: Colors.grey[200],
         appBar: new AppBar(
-          title: new Text("发现"),
+          title: new Text('发现'),
         ),
         body: new ListView(
           children: <Widget>[
@@ -32,7 +32,7 @@ class AppDiscoverState extends State<AppDiscover> {
                 height: 50.0,
                 child: new ListTile(
                   leading: new Icon(Icons.camera),
-                  title: new Text("朋友圈"),
+                  title: new Text('朋友圈'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                 ),
                 color: Colors.white,
@@ -45,7 +45,7 @@ class AppDiscoverState extends State<AppDiscover> {
                 height: 50.0,
                 child: new ListTile(
                   leading: new Icon(Icons.crop_free),
-                  title: new Text("扫一扫"),
+                  title: new Text('扫一扫'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                 ),
                 color: Colors.white,
@@ -55,7 +55,7 @@ class AppDiscoverState extends State<AppDiscover> {
             new Container(
               child: new ListTile(
                 leading: new Icon(Icons.refresh),
-                title: new Text("摇一摇"),
+                title: new Text('摇一摇'),
                 trailing: new Icon(Icons.keyboard_arrow_right),
               ),
               color: Colors.white,
@@ -67,7 +67,7 @@ class AppDiscoverState extends State<AppDiscover> {
                 height: 50.0,
                 child: new ListTile(
                   leading: new Icon(Icons.star),
-                  title: new Text("看一看"),
+                  title: new Text('看一看'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                 ),
                 color: Colors.white,
@@ -77,7 +77,7 @@ class AppDiscoverState extends State<AppDiscover> {
             new Container(
               child: new ListTile(
                 leading: new Icon(Icons.search),
-                title: new Text("搜一搜"),
+                title: new Text('搜一搜'),
                 trailing: new Icon(Icons.keyboard_arrow_right),
               ),
               color: Colors.white,
@@ -88,7 +88,7 @@ class AppDiscoverState extends State<AppDiscover> {
               child: new Container(
                 child: new ListTile(
                   leading: new Icon(Icons.people),
-                  title: new Text("附近的人"),
+                  title: new Text('附近的人'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                 ),
                 color: Colors.white,
@@ -99,7 +99,7 @@ class AppDiscoverState extends State<AppDiscover> {
             new Container(
               child: new ListTile(
                 leading: new Icon(Icons.hourglass_empty),
-                title: new Text("漂流瓶"),
+                title: new Text('漂流瓶'),
                 trailing: new Icon(Icons.keyboard_arrow_right),
               ),
               color: Colors.white,
@@ -110,7 +110,7 @@ class AppDiscoverState extends State<AppDiscover> {
               child: new Container(
                 child: new ListTile(
                   leading: new Icon(Icons.shopping_cart),
-                  title: new Text("购物"),
+                  title: new Text('购物'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                 ),
                 color: Colors.white,
@@ -121,7 +121,7 @@ class AppDiscoverState extends State<AppDiscover> {
             new Container(
               child: new ListTile(
                 leading: new Icon(Icons.games),
-                title: new Text("游戏"),
+                title: new Text('游戏'),
                 trailing: new Icon(Icons.keyboard_arrow_right),
               ),
               color: Colors.white,
@@ -135,7 +135,7 @@ class AppDiscoverState extends State<AppDiscover> {
               child: new Container(
                 child: new ListTile(
                   leading: new Icon(Icons.apps),
-                  title: new Text("小程序"),
+                  title: new Text('小程序'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                 ),
                 color: Colors.white,
