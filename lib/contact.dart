@@ -26,41 +26,9 @@ class AppContactState extends State<AppContact> {
     );
   }
 
-  Widget buildContainer(BuildContext context, Map item) {
-
-  }
-
-  void initState() {
-    super.initState();
-    /*
-     * 调用_readCounter函数，读取点击数
-     *  将点击数作为参数，创建一个函数
-     */
-    _readContacts().then((String value){
-      // 通知框架此对象的内部状态已更改
-      setState((){
-        // 将参数赋予存储点击数的变量
-        // ignore: deprecated_member_use, deprecated_member_use
-        var json;
-        json = jsonDecode(value);
-      });
-    });
-  }
-
-  Future<File> _getLocalFile() async {
-    String dir = (await getApplicationDocumentsDirectory()).path;
-    return new File('/Users/keith/Desktop/Project/flutter_app/src/contact.json');
-  }
-
-  Future<String> _readContacts() async {
-    try {
-      File file = await _getLocalFile();
-      String string = await file.readAsString();
-      return string;
-    } on FileSystemException {
-        return null;
-    }
-  }
+//  Widget buildContainer(BuildContext context, Map item) {
+//
+//  }
 
   @override
   Widget build(BuildContext context) {
