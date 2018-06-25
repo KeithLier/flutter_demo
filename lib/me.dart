@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/MyInfo.dart';
+import 'package:flutter_app/myInfo.dart';
+import 'package:flutter_app/myWallet.dart';
 
 class AppMe extends StatefulWidget {
   AppMe({Key key, this.title}) : super(key: key);
@@ -58,13 +59,13 @@ class AppMeState extends State<AppMe> {
                   title: new Text('钱包'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
                   onTap: (){
-//                    Navigator.of(context).push(
-//                        new MaterialPageRoute(
-//                            builder: (context){
-//                              return new MWalletVC();
-//                            }
-//                        )
-//                    );
+                    Navigator.of(context).push(
+                        new MaterialPageRoute(
+                            builder: (context){
+                              return new MyWallet();
+                            }
+                        )
+                    );
                   },
                 ),
                 color: Colors.white,

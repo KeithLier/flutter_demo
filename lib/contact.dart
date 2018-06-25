@@ -134,6 +134,12 @@ class AppContactState extends State<AppContact> {
       home: new Scaffold(
         appBar: new AppBar(
           title: new Text('通讯录'),
+          actions: <Widget>[
+            new IconButton(
+                icon: new Icon(Icons.group_add,color: Colors.black,),
+                onPressed: null
+            ),
+          ],
         ),
         body: new ListView(
 
