@@ -4,6 +4,7 @@ import 'home.dart';
 import 'contact.dart';
 import 'discover.dart';
 import 'me.dart';
+import 'package:flutter_app/ckc/ckchome.dart';
 
 class AppMain extends StatefulWidget {
   AppMain({Key key, this.title}) : super(key: key);
@@ -18,24 +19,29 @@ class AppMain extends StatefulWidget {
 class AppMainState extends State<AppMain> {
 
   final List<BottomNavigationBarItem> listSet =
-  [new BottomNavigationBarItem(
-    icon: new Icon(Icons.chat,color: Colors.grey),
-    title: new Text('微信'),
-  ),
-  new BottomNavigationBarItem(
-    icon: new Icon(Icons.perm_contact_calendar,color: Colors.grey,),
-    title: new Text('通讯录'),
-  ),
-  new BottomNavigationBarItem(
-    icon: new Icon(Icons.room,color: Colors.grey),
-    title: new Text('发现'),
-  ),
-  new BottomNavigationBarItem(
-    icon: new Icon(Icons.perm_identity,color: Colors.grey),
-    title: new Text('我'),
-  ),
+  [
+    new BottomNavigationBarItem(
+      icon: new Icon(Icons.chat,color: Colors.grey),
+      title: new Text('微信'),
+    ),
+    new BottomNavigationBarItem(
+      icon: new Icon(Icons.perm_contact_calendar,color: Colors.grey,),
+      title: new Text('通讯录'),
+    ),
+    new BottomNavigationBarItem(
+      icon: new Icon(Icons.room,color: Colors.grey),
+      title: new Text('发现'),
+    ),
+    new BottomNavigationBarItem(
+      icon: new Icon(Icons.perm_identity,color: Colors.grey),
+      title: new Text('我'),
+    ),
+    new BottomNavigationBarItem(
+      icon: new Icon(Icons.home,color: Colors.grey),
+      title: new Text('首页'),
+    ),
   ];
-  final List<StatefulWidget> vcSet = [new AppHome(),new AppContact(),new AppDiscover(),new AppMe()];
+  final List<StatefulWidget> vcSet = [new AppHome(),new AppContact(),new AppDiscover(),new AppMe(), new CKCHome()];
   int _sindex=0;
   @override
   Widget build(BuildContext context){
