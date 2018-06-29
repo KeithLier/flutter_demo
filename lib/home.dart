@@ -15,7 +15,6 @@ class AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
 
   Widget buildListTitle(BuildContext context, Map item) {
     return new ListTile(
-      isThreeLine: true,
       dense: false,
       leading: new CircleAvatar(child: new Text(item['image'])),
       title: new Text(item['title']),

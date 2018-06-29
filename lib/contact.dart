@@ -26,105 +26,103 @@ class AppContactState extends State<AppContact> {
     );
   }
 
-//  Widget buildContainer(BuildContext context, Map item) {
-//
-//  }
 
   @override
   Widget build(BuildContext context) {
     List<Map> list;
     list = <Map>[
       {
-        'title': '',
-        'data': [
-          {
-            'image': '',
-            'name': '新朋友',
-            'id': '1'
-          },
-          {
-            'image': '',
-            'name': '群聊',
-            'id': '2'
-          },
-          {
-            'image': '',
-            'name': '标签',
-            'id': '3'
-          },
-          {
-            'image': '',
-            'name': '公众号',
-            'id': '4'
-          }
-        ]
+        'image': '1',
+        'name': '新朋友',
+        'id': '1'
       },
       {
-        'title': '我的企业',
-        'data': [
-          {
-            'image': '',
-            'name': '桦洁商贸',
-            'id': '5'
-          },
-          {
-            'image': '',
-            'name': 'CK',
-            'id': '6'
-          }
-        ]
+        'image': '2',
+        'name': '群聊',
+        'id': '2'
       },
       {
-        'title': 'A',
-        'data': [
-          {
-            'image': '',
-            'name': '阿猫',
-            'id': '11'
-          },
-          {
-            'image': '',
-            'name': '阿狗',
-            'id': '12'
-          },
-          {
-            'image': '',
-            'name': '爱玩',
-            'id': '13'
-          },
-          {
-            'image': '',
-            'name': 'andy',
-            'id': '14'
-          }
-        ]
+        'image': '3',
+        'name': '标签',
+        'id': '3'
       },
       {
-        'title': 'B',
-        'data': [
-          {
-            'image': '',
-            'name': 'Bro',
-            'id': '21'
-          },
-          {
-            'image': '',
-            'name': '百合',
-            'id': '22'
-          },
-          {
-            'image': '',
-            'name': '百事可乐',
-            'id': '23'
-          },
-          {
-            'image': '',
-            'name': '爆菊',
-            'id': '24'
-          }
-        ]
+        'image': '4',
+        'name': '公众号',
+        'id': '4'
+      },
+      {
+        "title":"我的企业"
+      },
+      {
+        'image': '5',
+        'name': '桦洁商贸',
+        'id': '5'
+      },
+      {
+        'image': '6',
+        'name': 'CK',
+        'id': '6'
+      },
+      {
+        "title":"A"
+      },
+      {
+        'image': '7',
+        'name': '阿猫',
+        'id': '11'
+      },
+      {
+        'image': '8',
+        'name': '阿狗',
+        'id': '12'
+      },
+      {
+        'image': '9',
+        'name': '爱玩',
+        'id': '13'
+      },
+      {
+        'image': '10',
+        'name': 'andy',
+        'id': '14'
+      },
+      {
+        "title":"B"
+      },
+      {
+        'image': '11',
+        'name': 'Bro',
+        'id': '21'
+      },
+      {
+        'image': '12',
+        'name': '百合',
+        'id': '22'
+      },
+      {
+        'image': '13',
+        'name': '百事可乐',
+        'id': '23'
+      },
+      {
+        'image': '14',
+        'name': '爆菊',
+        'id': '24'
       }
     ];
+
+    var items = [];
+    for(var i = 0; i < list.length; i++) {
+      var l = list[i];
+      if(l.containsKey("title")) {
+        var hi = new HeadingItem(l["title"]);
+        items.add(hi);
+      } else {
+        var ci = new ContactItem(l["id"],l["name"],l["image"]);
+        items.add(ci);
+      }
+    }
     // TODO: implement build
     return new MaterialApp(
       theme: new ThemeData(
@@ -141,10 +139,46 @@ class AppContactState extends State<AppContact> {
             ),
           ],
         ),
-        body: new ListView(
-
+        body: new ListView.builder(
+          itemCount: items.length,
+          itemBuilder: (context, index) {
+            final item = items[index];
+            if(item is HeadingItem) {
+              return new ListTile(
+                title: new Text(
+                  item.title,
+                  style: Theme.of(context).textTheme.subhead,
+                ),
+              );
+            } else if (item is ContactItem) {
+              return new ListTile(
+                leading: new CircleAvatar(
+                    child: new Text(item.image)
+                ),
+                title: new Text(item.name),
+              );
+            }
+          },
         ),
       ),
     );
   }
+}
+
+abstract class ListItem {
+
+}
+
+class HeadingItem implements ListItem {
+  final String title;
+
+  HeadingItem(this.title);
+}
+
+class ContactItem implements ListItem {
+  final String  name;
+  final String  id;
+  final String  image;
+
+  ContactItem(this.id,this.name,this.image);
 }
