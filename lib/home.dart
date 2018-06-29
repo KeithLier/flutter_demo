@@ -56,9 +56,38 @@ class AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
         appBar: new AppBar(
           title: new Text('微信'),
           actions: <Widget>[
-            new IconButton(
-                icon: new Icon(Icons.add,color: Colors.black,),
-                onPressed: null
+            new PopupMenuButton<String>(
+              itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
+                const PopupMenuItem<String>(
+                    value: 'Toolbar menu',
+                    child: const ListTile(
+                      leading: const Icon(Icons.message),
+                      title: const Text("发起群聊"),
+                    )
+                ),
+                const PopupMenuItem<String>(
+                    value: 'Toolbar menu',
+                    child: const ListTile(
+                      leading: const Icon(Icons.person_add),
+                      title: const Text("添加朋友"),
+                    )
+                ),
+                const PopupMenuItem<String>(
+                    value: 'Toolbar menu',
+                    child: const ListTile(
+                      leading: const Icon(Icons.fullscreen),
+                      title: const Text("扫一扫"),
+                    )
+                ),
+                const PopupMenuItem<String>(
+                    value: 'Toolbar menu',
+                    child: const ListTile(
+                      leading: const Icon(Icons.attach_money),
+                      title: const Text("收付款"),
+                    )
+                ),
+              ],
+              icon: new Icon(Icons.add),
             ),
           ],
         ),
