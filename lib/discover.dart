@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/friends.dart';
 
 class AppDiscover extends StatefulWidget {
   AppDiscover({Key key, this.title}) : super(key: key);
@@ -34,6 +35,14 @@ class AppDiscoverState extends State<AppDiscover> {
                   leading: new Icon(Icons.camera),
                   title: new Text('朋友圈'),
                   trailing: new Icon(Icons.keyboard_arrow_right),
+                  onTap: (){
+                    Navigator.of(context).push(
+                      new MaterialPageRoute(
+                          builder: (context){
+                            return new FriendsList();
+                          })
+                    );
+                  },
                 ),
                 color: Colors.white,
               ),

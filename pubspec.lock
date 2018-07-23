@@ -88,6 +88,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.0-alpha.12"
+  gesture_password:
+    dependency: "direct main"
+    description:
+      name: gesture_password
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   glob:
     dependency: transitive
     description:
