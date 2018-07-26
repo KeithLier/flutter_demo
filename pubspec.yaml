@@ -13,6 +13,7 @@ dependencies:
 
   gesture_password: "^0.0.2"
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -22,6 +23,10 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+
+  plugin:
+    androidPackage: io.flutter.plugins.camera
+    pluginClass: CameraPlugin
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

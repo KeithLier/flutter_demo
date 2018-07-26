@@ -62,6 +62,7 @@ class FriendsState extends State<FriendsList> {
                               title: new Center(child: new Text('取消', textAlign: TextAlign.center)),
                               onTap: (){
 
+
                               },
                             ),
                           ],
