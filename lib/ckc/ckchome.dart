@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert';
+import 'message.dart';
 
 class CKCHome extends StatefulWidget {
   CKCHome({Key key, this.title}) : super(key: key);
@@ -53,6 +54,19 @@ class CKCHomeState extends State<CKCHome> {
         appBar: new AppBar(
           title: new Text('首页'),
           backgroundColor: Colors.grey[200],
+          actions: <Widget>[
+            new IconButton(
+                icon: new Icon(Icons.message),
+                onPressed: () {
+                  Navigator.of(context).push(
+                      new MaterialPageRoute(
+                          builder: (context){
+                            return new Message();
+                          }
+                      )
+                  );
+                })
+          ],
         ),
         body: new Center(
           child: new Column(

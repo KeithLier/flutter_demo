@@ -21,6 +21,10 @@ class AppMainState extends State<AppMain> {
   final List<BottomNavigationBarItem> listSet =
   [
     new BottomNavigationBarItem(
+      icon: new Icon(Icons.home,color: Colors.grey),
+      title: new Text('首页'),
+    ),
+    new BottomNavigationBarItem(
       icon: new Icon(Icons.chat,color: Colors.grey),
       title: new Text('微信'),
     ),
@@ -36,12 +40,8 @@ class AppMainState extends State<AppMain> {
       icon: new Icon(Icons.perm_identity,color: Colors.grey),
       title: new Text('我'),
     ),
-    new BottomNavigationBarItem(
-      icon: new Icon(Icons.home,color: Colors.grey),
-      title: new Text('首页'),
-    ),
   ];
-  final List<StatefulWidget> vcSet = [new AppHome(),new AppContact(),new AppDiscover(),new AppMe(), new CKCHome()];
+  final List<StatefulWidget> vcSet = [ new CKCHome(),new AppHome(),new AppContact(),new AppDiscover(),new AppMe()];
   int _sindex=0;
   @override
   Widget build(BuildContext context){
