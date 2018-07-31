@@ -18,11 +18,25 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.25213474024-j88rbgjtrgiccfstm5hkts112akpttu3</string>
+				<string>com.example.flutterApp1</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
+	<string>Access camera and photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access camera and photos</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -43,9 +57,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSCameraUsageDescription</key>
-    <string>Access camera and photos</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Access camera and photos</string>
 </dict>
 </plist>
