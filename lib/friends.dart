@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'image_picker_channel.dart';
+//import 'image_picker_channel.dart';
 import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'main.dart';
 
 class FriendsList extends StatefulWidget {
 
@@ -13,21 +15,21 @@ class FriendsList extends StatefulWidget {
 
 class FriendsState extends State<FriendsList> {
 
-  ImagePicker _imagePicker = new ImagePickerChannel();
+  ImagePicker _imagePicker = new ImagePicker();
 
   File _imageFile;
 
-  void captureImage(ImageSource captureMode) async {
-    try {
-      var imageFile = await _imagePicker.pickImage(imageSource: captureMode);
-      setState(() {
-        _imageFile = imageFile;
-      });
+    void chooseImage() async{
+      try {
+        File imageFile = await ImagePicker.pickImage();
+        setState(() {
+          _imageFile = imageFile;
+        });
+      }
+      catch (e) {
+        print(e);
+      }
     }
-    catch (e) {
-      print(e);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,37 +42,7 @@ class FriendsState extends State<FriendsList> {
           new IconButton(
             icon: new Icon(Icons.camera_alt, color: Colors.black,),
             onPressed: () {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return new Container(
-                      height: 204.0,
-                      child: new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Column(
-                          children: <Widget>[
-                            new ListTile(
-                              title: new Center(child: new Text('拍摄', textAlign: TextAlign.center)),
-                              subtitle: new Center(child: new Text('照片或视频', textAlign: TextAlign.center)),
-                                onTap: () => captureImage(ImageSource.photos)
-                            ),
-                            new ListTile(
-                              title: new Center(child: new Text('从手机相册选择', textAlign: TextAlign.center)),
-                              onTap: () => captureImage(ImageSource.camera)
-                            ),
-                            new ListTile(
-                              title: new Center(child: new Text('取消', textAlign: TextAlign.center)),
-                              onTap: (){
-
-
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  }
-              );
+              chooseImage();
             },
           )
         ],
