@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'message.dart';
+import 'sign.dart';
 
 class CKCHome extends StatefulWidget {
   CKCHome({Key key, this.title}) : super(key: key);
@@ -61,7 +62,8 @@ class CKCHomeState extends State<CKCHome> {
                   Navigator.of(context).push(
                       new MaterialPageRoute(
                           builder: (context){
-                            return new Message();
+                            return new SignIn();
+//                            return new Message();
                           }
                       )
                   );

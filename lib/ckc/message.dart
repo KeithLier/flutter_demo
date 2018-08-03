@@ -17,18 +17,19 @@ final ThemeData kDefaultTheme = new ThemeData(
   accentColor: Colors.orangeAccent[400],
 );
 
-GoogleSignIn _googleSignIn = new GoogleSignIn(
-  scopes: <String>[
-    'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
-  ],
-);
+final googleSignIn = new GoogleSignIn();
+
+//GoogleSignIn _googleSignIn = new GoogleSignIn(
+//  scopes: <String>[
+//    'email',
+//    'https://www.googleapis.com/auth/contacts.readonly',
+//  ],
+//);
 
 class Message extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return new MessageState();
   }
 }
@@ -39,23 +40,23 @@ class MessageState extends State<Message> with TickerProviderStateMixin{
   final TextEditingController _textController = new TextEditingController();
   bool _isComposing = false;
   // ignore: new_with_undefined_constructor_default, new_with_undefined_constructor_default
-  GoogleSignInAccount _currentUser = _googleSignIn.currentUser;
+//  GoogleSignInAccount _currentUser = _googleSignIn.currentUser;
 
   Future<Null> _ensureLoggedIn() async {
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-      setState(() {
-        _currentUser = account;
-      });
-    });
-    if (_currentUser == null) await _googleSignIn.signInSilently();
-    if (_currentUser == null) await _googleSignIn.signIn();
-//    GoogleSignInAccount user = googleSignIn.currentUser;
-//    if(user == null) {
-//      user = await googleSignIn.signInSilently();
-//    }
-//    if(user == null) {
-//      await googleSignIn.signIn();
-//    }
+//    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+//      setState(() {
+//        _currentUser = account;
+//      });
+//    });
+//    if (_currentUser == null) await _googleSignIn.signInSilently();
+//    if (_currentUser == null) await _googleSignIn.signIn();
+    GoogleSignInAccount user = googleSignIn.currentUser;
+    if(user == null) {
+      user = await googleSignIn.signInSilently();
+    }
+    if(user == null) {
+      await googleSignIn.signIn();
+    }
   }
 
   Future _handleSubmitted(String text) async {
@@ -126,7 +127,6 @@ class MessageState extends State<Message> with TickerProviderStateMixin{
   }
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('聊天室'),
@@ -182,14 +182,14 @@ class ChatMessage extends StatelessWidget {
             new Container(
               margin: const EdgeInsets.only(right: 16.0),
               child: new GoogleUserCircleAvatar(
-                  _googleSignIn.currentUser.photoUrl
+                  googleSignIn.currentUser.photoUrl
               ),
             ),
             new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 new Text(
-                  _googleSignIn.currentUser.displayName,
+                  googleSignIn.currentUser.displayName,
                   style: Theme.of(context).textTheme.subhead,
                 ),
                 new Container(
