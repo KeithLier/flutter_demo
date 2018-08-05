@@ -1,39 +1,39 @@
 import 'package:flutter/material.dart';
-import 'signup.dart';
 
-class SignIn extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return new SignInState();
+    return new SignUpState();
   }
 }
 
-class SignInState extends State<SignIn> {
+
+class SignUpState extends State<SignUp> {
 
   final TextEditingController _usernameController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
+  final TextEditingController _emailController = new TextEditingController();
+  final TextEditingController _phoneController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Sign In'),
+        title: new Text('Sign Up'),
         backgroundColor: Colors.grey[200],
-        leading: new CloseButton(),
       ),
       body: new Stack(
         children: <Widget>[
           new Opacity(
             opacity: 0.3,
             child: new Container(
-              padding: const EdgeInsets.only(top: 0.0),
               decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: new ExactAssetImage('images/sign_in_bg.jpg'),
-                  fit: BoxFit.cover,
-                )
+                  image: new DecorationImage(
+                    image:new ExactAssetImage('images/sign_up_bg.jpg'),
+                    fit: BoxFit.cover,
+                  )
               ),
             ),
           ),
@@ -42,17 +42,14 @@ class SignInState extends State<SignIn> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               new Container(
-                child: Center(
-                  child: new Image.asset('images/logo.png',
-                    width: MediaQuery.of(context).size.width * 0.2,
-                    height: MediaQuery.of(context).size.width * 0.2,
-                  ),
+                child: new Center(
+                  child:new Image.asset('images/logo.png',width: MediaQuery.of(context).size.width * 0.2,),
                 ),
                 padding: const EdgeInsets.only(top: 60.0),
               ),
               new Container(
-                padding: const EdgeInsets.only(left: 20.0,top: 100.0),
-                width: MediaQuery.of(context).size.width * 0.96,
+                padding: const EdgeInsets.only(left: 20.0,top: 80.0),
+                width: MediaQuery.of(context).size.width *0.96,
                 child: new Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -72,44 +69,53 @@ class SignInState extends State<SignIn> {
                         icon: new Icon(Icons.lock_outline),
                       ),
                     ),
-                    new FlatButton(
+                    new TextField(
+                      controller: _emailController,
+                      decoration: new InputDecoration(
+                        hintText: 'Email',
+                        icon: new Icon(Icons.email),
+                      ),
+                    ),
+                    new TextField(
+                      controller: _phoneController,
+                      keyboardType: TextInputType.number,
+                      decoration: new InputDecoration(
+                        hintText: 'Phone',
+                        icon: new Icon(Icons.phone),
+                      ),
+                    ),
+                    new Center(
+                      child: new FlatButton(
                         padding: const EdgeInsets.only(top: 80.0),
-                        onPressed: () {
-                          
-                        },
                         child: new Container(
                           height: 40.0,
+                          width: MediaQuery.of(context).size.width,
                           decoration: new BoxDecoration(
                             color: Theme.of(context).accentColor,
                           ),
                           child: new Center(
-                            child: new Text(
-                              'Sign In',
-                              style: new TextStyle(
-                                color: const Color(0xff000000)
-                              ),
-                            ),
-                          ),
-                        )
-                    ),
-                    new Center(
-                      child: new FlatButton(
-                          onPressed: (){
-                            Navigator.of(context).push(
-                                new MaterialPageRoute(
-                                    builder: (context){
-                                      return new SignUp();
-                                    }
-                                )
-                            );
-                          },
-                          child: new Text("Don't have an account ?  Sign Up",
-                            style: new TextStyle(
-                              color: const Color(0xff000000)
-                            ),
-                          ),
-                        padding: const EdgeInsets.only(top: 100.0),
+                              child: new Text("Join",
+                                  style: new TextStyle(
+                                    color: const Color(0xff000000),
+                                  ))),
+                        ),
+                        onPressed: () {
+                          print('Sign In');
+                        },
                       ),
+                    ),
+
+                    new Center(
+                        child: new FlatButton(
+                          child: new Text("Already have an account ?  Sign In",
+                              style: new TextStyle(
+                                color: const Color(0xff000000),
+                              )),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          padding: const EdgeInsets.only(top: 100.0),
+                        )
                     )
                   ],
                 ),
