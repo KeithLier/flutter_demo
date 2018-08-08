@@ -49,7 +49,7 @@ class SignUpState extends State<SignUp> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Sign Up'),
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.grey[100],
       ),
       body: new Stack(
         children: <Widget>[
