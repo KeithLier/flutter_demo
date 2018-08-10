@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:async';
 import 'dart:io';
 import 'dart:convert';
 import 'message.dart';
 import 'sign.dart';
+import 'package:flutter_app/server/server.dart';
 
 class CKCHome extends StatefulWidget {
   CKCHome({Key key, this.title}) : super(key: key);
@@ -11,11 +14,23 @@ class CKCHome extends StatefulWidget {
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return CKCHomeState();
+//    _getLandingFile().then((onvalue) {
+//      return CKCHomeState(onvalue.existsSync());
+//    });
   }
 }
 
+Future<File> _getLandingFile() async {
+  String dir = (await getApplicationDocumentsDirectory()).path;
+  return new File('$dir/LandingInfomation');
+}
+
 class CKCHomeState extends State<CKCHome> {
-  
+
+//  CKCHomeState(this.landing);
+
+  final bool landing = false;
+
   var IPAddress = 'Unknown';
   getIPAddress() async {
     var url = 'https://httpbin.org/ip';
@@ -62,8 +77,7 @@ class CKCHomeState extends State<CKCHome> {
                   Navigator.of(context).push(
                       new MaterialPageRoute(
                           builder: (context){
-                            return new SignIn();
-//                            return new Message();
+                            return landing ? new Message() : new SignIn();
                           }
                       )
                   );
@@ -80,6 +94,19 @@ class CKCHomeState extends State<CKCHome> {
               new RaisedButton(
                   onPressed: getIPAddress,
                   child: new Text('Get IP address'),
+              ),
+              new SizedBox(height: 32.0),
+              new RaisedButton(
+                child: new Text('Build HTTP Server'),
+                  onPressed: (){
+                    Navigator.of(context).push(
+                        new MaterialPageRoute(
+                            builder: (context){
+                              return Server();
+                            }
+                        )
+                    );
+                  }
               )
             ],
           ),

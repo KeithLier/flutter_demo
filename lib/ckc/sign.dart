@@ -17,11 +17,11 @@ class SignInState extends State<SignIn> {
   final TextEditingController _usernameController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
 
-  Future<int> _saveLogin(String phone, String password) async {
-    String dir = (await getApplicationDocumentsDirectory()).path;
-    await new File('$dir/LandingInformation').writeAsString(
-        '{"phone":"$phone","name":"$password"}');
-  }
+//  Future<int> _saveLogin(String phone, String password) async {
+//    String dir = (await getApplicationDocumentsDirectory()).path;
+//    await new File('$dir/LandingInformation').writeAsString(
+//        '{"phone":"$phone","name":"$password"}');
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class SignInState extends State<SignIn> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Sign In'),
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Colors.grey[200],
         leading: new CloseButton(),
       ),
       body: new Stack(
@@ -84,7 +84,7 @@ class SignInState extends State<SignIn> {
                     new FlatButton(
                         padding: const EdgeInsets.only(top: 80.0),
                         onPressed: () {
-                          _saveLogin(_usernameController.text, _passwordController.text);
+//                          _saveLogin(_usernameController.text, _passwordController.text);
                         },
                         child: new Container(
                           height: 40.0,
