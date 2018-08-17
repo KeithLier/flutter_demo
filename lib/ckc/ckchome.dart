@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'message.dart';
 import 'sign.dart';
 import 'package:flutter_app/server/server.dart';
+import 'package:flutter_app/Animation/Animation.dart';
 
 class CKCHome extends StatefulWidget {
   CKCHome({Key key, this.title}) : super(key: key);
@@ -103,6 +104,19 @@ class CKCHomeState extends State<CKCHome> {
                         new MaterialPageRoute(
                             builder: (context){
                               return Server();
+                            }
+                        )
+                    );
+                  }
+              ),
+              new SizedBox(height: 32.0),
+              new RaisedButton(
+                  child: new Text('Flutter Animation'),
+                  onPressed: (){
+                    Navigator.of(context).push(
+                        new MaterialPageRoute(
+                            builder: (context){
+                              return AnimationPage();
                             }
                         )
                     );

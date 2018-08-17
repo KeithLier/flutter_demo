@@ -42,6 +42,7 @@ class AppMainState extends State<AppMain> {
     ),
   ];
   final List<StatefulWidget> vcSet = [ new CKCHome(),new AppHome(),new AppContact(),new AppDiscover(),new AppMe()];
+//  final List<StatefulWidget> vcSet = [new AppHome(),new AppContact(),new AppDiscover(),new AppMe()];
   int _sindex=0;
   @override
   Widget build(BuildContext context){
