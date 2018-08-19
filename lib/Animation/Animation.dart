@@ -12,11 +12,12 @@ class AnimationPage extends StatefulWidget {
 }
 
 class AnimationState extends State<AnimationPage> with TickerProviderStateMixin {
-  
+
+  static const size = const Size(200.0, 100.0);
   final random = new Random();
   int dataSet = 50;
   AnimationController animation;
-  BarTween tween;
+  BarChartTween tween;
 
   @override
   void initState() {
@@ -24,7 +25,7 @@ class AnimationState extends State<AnimationPage> with TickerProviderStateMixin 
     animation = new AnimationController(
       duration: const Duration(milliseconds: 300), vsync: this
     );
-    tween = new BarTween(new Bar.empty(), new Bar.random(random));
+    tween = new BarChartTween(new BarChart.empty(size), new BarChart.random(size,random));
     animation.forward();
   }
 
@@ -36,9 +37,9 @@ class AnimationState extends State<AnimationPage> with TickerProviderStateMixin 
 
   void changeData() {
     setState(() {
-      tween = new BarTween(
+      tween = new BarChartTween(
         tween.evaluate(animation),
-        new  Bar.random(random),
+        new  BarChart.random(size,random),
       );
       animation.forward(from: 0.0);
     });
