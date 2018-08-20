@@ -17,9 +17,10 @@ class BarChart {
 
   factory BarChart.random(Size size,Random random){
     const barWidthFraction = 0.75;
+    final ranks = selectRanks(random, ColorPalette.primary.length);
     const minBarDistance = 20.0;
     // floor()：返回不大于此的最大整数
-    final barCount = random.nextInt((size.width/minBarDistance).floor()) + 1;
+    final barCount = ranks.length;
     final barDistance = size.width / (1+barCount);
     final barWidth = barDistance * barWidthFraction;
     final startX = barDistance - barWidth/2;
@@ -27,10 +28,11 @@ class BarChart {
     final bars = new List.generate(
       barCount,
         (i) => new Bar(
+          ranks[i],
           startX + i *barDistance,
           barWidth,
           random.nextDouble() * size.height,
-          color,
+          ColorPalette.primary[ranks[i]],
         ),
     );
     return new BarChart(
@@ -38,20 +40,60 @@ class BarChart {
     );
   }
 
-  static BarChart lerp(BarChart begin, BarChart end, double t) {
-    final barCount = max(begin.bars.length, end.bars.length);
-    final bars = new List.generate(
-      barCount,
-        (i) => Bar.lerp(
-          begin._barOrNull(i) ?? end.bars[i].collapsed,
-          end._barOrNull(i) ?? begin.bars[i].collapsed,
-          t,
-        )
-    );
-    return new BarChart(
-        bars
-    );
+  static List<int> selectRanks(Random random, int cap) {
+    final ranks = <int>[];
+    var rank = 0;
+    while(true) {
+      if(random.nextDouble() < 0.2)
+        rank++;
+      if(cap <= rank)
+        break;
+      ranks.add(rank);
+      rank++;
+    }
+    return ranks;
   }
+
+//  static BarChart lerp(BarChart begin, BarChart end, double t) {
+//    final bars = <Bar>[];
+//    final bMax = begin.bars.length;
+//    final eMax = end.bars.length;
+//    var b = 0;
+//    var e = 0;
+//    while(b + e < bMax + eMax) {
+//      /*
+//      这里的条件判断中包含两种情况
+//      b < bMax && e == eMax：
+//        当新图表条形数减少时
+//      b < bMax && begin.bars[b] < end.bars[e]：
+//        当新图表不包含旧图表的颜色条形时
+//      满足一种情况，处理旧图表中多余的条形，即向左侧方清除旧条形
+//       */
+//
+//      if(b < bMax && (e == eMax || begin.bars[b] < end.bars[e])) {
+//        bars.add(Bar.lerp(begin.bars[b], begin.bars[b].collapsed, t));
+//        b++;
+//      } else if (e < eMax && (b == bMax || end.bars[e] < begin.bars[b])) {
+//        /*
+//      这里的条件判断中包含两种情况
+//      e < eMax && b == bMax：
+//        当新图表条形数增加时
+//      e < eMax && end.bars[e] < begin.bars[b]：
+//        当新图表包含旧图表没有的颜色条形时
+//      满足一种情况，处理旧图表中没有的条形，即向右侧方绘制新条形
+//       */
+//        bars.add(Bar.lerp(end.bars[e], end.bars[e].collapsed, t));
+//        e++;
+//      } else {
+//        bars.add(Bar.lerp(begin.bars[b], end.bars[e], t));
+//        b++;
+//        e++;
+//      }
+//    }
+//    return new BarChart(
+//        bars
+//    );
+//  }
 
   Bar _barOrNull(int index) {
     return (index<bars.length ? bars[index] : null);
@@ -59,21 +101,69 @@ class BarChart {
 }
 
 class BarChartTween extends Tween<BarChart> {
-  BarChartTween(BarChart begin, BarChart end) : super(begin: begin, end: end);
+  final _tweens = <BarTween>[];
+
+  BarChartTween(BarChart begin, BarChart end) : super(begin: begin, end: end) {
+    final bMax = begin.bars.length;
+    final eMax = end.bars.length;
+    var b = 0;
+    var e = 0;
+    while(b + e < bMax + eMax) {
+      /*
+      这里的条件判断中包含两种情况
+      b < bMax && e == eMax：
+        当新图表条形数减少时
+      b < bMax && begin.bars[b] < end.bars[e]：
+        当新图表不包含旧图表的颜色条形时
+      满足一种情况，处理旧图表中多余的条形，即向左侧方清除旧条形
+       */
+
+      if(b < bMax && (e == eMax || begin.bars[b] < end.bars[e])) {
+        _tweens.add(new BarTween(begin.bars[b], begin.bars[b].collapsed));
+        b++;
+      } else if (e < eMax && (b == bMax || end.bars[e] < begin.bars[b])) {
+        /*
+      这里的条件判断中包含两种情况
+      e < eMax && b == bMax：
+        当新图表条形数增加时
+      e < eMax && end.bars[e] < begin.bars[b]：
+        当新图表包含旧图表没有的颜色条形时
+      满足一种情况，处理旧图表中没有的条形，即向右侧方绘制新条形
+       */
+        _tweens.add(new BarTween(end.bars[e], end.bars[e].collapsed));
+        e++;
+      } else {
+        _tweens.add(new BarTween(begin.bars[b], end.bars[e]));
+        b++;
+        e++;
+      }
+    }
+  }
   @override
-  BarChart lerp(double t) => BarChart.lerp(begin, end, t);
+  BarChart lerp(double t) => new BarChart(
+    new List.generate(
+      _tweens.length,
+      (i) => _tweens[i].lerp(t)
+    )
+  );
 }
 
 class Bar {
-  Bar(this.x, this.width, this.height, this.color);
+  Bar(this.rank,this.x, this.width, this.height, this.color);
+  final int rank;
   final double x;
   final double width;
   final double height;
   final Color color;
-  Bar get collapsed => new Bar(x, 0.0, 0.0, color);
+  Bar get collapsed => new Bar(rank,x, 0.0, 0.0, color);
 
+  bool operator <(Bar other) {
+    return rank < other.rank;
+  }
   static Bar lerp(Bar begin, Bar end, double t) {
+    assert(begin.rank == end.rank);
     return new Bar(
+        begin.rank,
         lerpDouble(begin.x, end.x, t),
         lerpDouble(begin.width, end.width, t),
         lerpDouble(begin.height, end.height, t),
@@ -83,7 +173,10 @@ class Bar {
 }
 
 class BarTween extends Tween<Bar> {
-  BarTween(Bar begin, Bar end) : super(begin:begin, end: end);
+  BarTween(Bar begin, Bar end) : super(begin:begin, end: end) {
+    assert(begin.rank == end.rank);
+  }
+
   
   @override
   Bar lerp(double t) {
