@@ -8,44 +8,48 @@ import 'tween.dart';
 
 class BarChart {
 
-  final List<BarStack> stacks;
-  BarChart(this.stacks);
+  final List<BarGroup> groups;
+  BarChart(this.groups);
 
   factory BarChart.empty(Size size) {
     return new BarChart(
-        <BarStack>[]
+        <BarGroup>[]
     );
   }
 
   factory BarChart.random(Size size,Random random){
-    const barWidthFraction = 0.75;
-    final ranks = selectRanks(random, 10);
-    final barCount = ranks.length;
-    final barDistance = size.width / (1+barCount);
+    const groupWidthFraction = 0.75;
+    const barWidthFraction = 0.9;
+    final groupRanks = selectRanks(random, 5);
+    final groupCount = groupRanks.length;
+    final groupDistance = size.width / (1+groupCount);
+    final groupWidth = groupDistance * groupWidthFraction;
+    final startX = groupDistance - groupWidth/2;
+    final barRanks = selectRanks(random, ColorPalette.primary.length ~/ 2);
+    final barCount = barRanks.length;
+    final barDistance = groupWidth / barCount;
     final barWidth = barDistance * barWidthFraction;
-    final startX = barDistance - barWidth/2;
-    final stacks = new List.generate(
-      barCount,
+    final groups = new List.generate(
+      groupCount,
         (i) {
-          final barRanks = selectRanks(random, ColorPalette.primary.length ~/ 2);
           final bars = new List.generate(
-            barRanks.length,
-            (j) => new Bar(
-              barRanks[j],
-              random.nextDouble() * size.height / 2,
-              ColorPalette.primary[barRanks[j]],
-            )
+              barCount,
+              (j) => new Bar(
+                barRanks[j],
+                startX + i * groupDistance + j * barDistance,
+                barWidth,
+                random.nextDouble() * size.height,
+                ColorPalette.primary[barRanks[j]],
+              )
           );
-          return new BarStack(
-              ranks[i],
-              startX + i * barDistance,
-              barWidth,
+          return new BarGroup(
+              groupRanks[i],
               bars
           );
-        }
+      }
     );
     return new BarChart(
-      stacks
+      groups
     );
   }
 
@@ -65,17 +69,58 @@ class BarChart {
 
 class BarChartTween extends Tween<BarChart> {
   BarChartTween(BarChart begin, BarChart end)
-      : _stacksTween = new MergeTween<BarStack>(begin.stacks, end.stacks),
+      : _groupsTween = new MergeTween<BarGroup>(begin.groups, end.groups),
         super(begin: begin, end: end);
 
-  final MergeTween<BarStack> _stacksTween;
+  final MergeTween<BarGroup> _groupsTween;
 
   @override
-  BarChart lerp(double t) => new BarChart(
-    _stacksTween.lerp(t)
-  );
+  BarChart lerp(double t) => new BarChart(_groupsTween.lerp(t));
 }
 
+
+class BarGroup implements MergeTweenable<BarGroup> {
+
+  BarGroup(this.rank, this.bars);
+
+  final int rank;
+  final List<Bar> bars;
+
+  @override
+  // TODO: implement empty
+  BarGroup get empty => new BarGroup(rank, <Bar>[]);
+
+  @override
+  bool operator <(BarGroup other) {
+    // TODO: implement <
+    return rank < other.rank;
+  }
+
+  @override
+  Tween<BarGroup> tweenTo(BarGroup other) {
+    // TODO: implement tweenTo
+    return new BarGroupTween(this, other);
+  }
+}
+
+class BarGroupTween extends Tween<BarGroup> {
+  BarGroupTween(BarGroup begin, BarGroup end)
+      : _barsTween = new MergeTween<Bar>(begin.bars, end.bars),
+        super(begin: begin, end: end) {
+    assert(begin.rank == end.rank);
+  }
+
+  final MergeTween<Bar> _barsTween;
+
+  @override
+  BarGroup lerp(double t) {
+    // TODO: implement lerp
+    return new BarGroup(
+        begin.rank,
+        _barsTween.lerp(t)
+    );
+  }
+}
 
 class BarStack implements MergeTweenable<BarStack> {
 
@@ -125,14 +170,16 @@ class BarStackTween extends Tween<BarStack> {
 }
 
 class Bar extends MergeTweenable<Bar>{
-  Bar(this.rank, this.height, this.color);
+  Bar(this.rank,this.x,this.width, this.height, this.color);
   final int rank;
+  final double x;
+  final double width;
   final double height;
   final Color color;
 
   @override
   // TODO: implement empty
-  Bar get empty => new Bar(rank, 0.0, color);
+  Bar get empty => new Bar(rank,x,0.0, 0.0, color);
 
   @override
   bool operator <(Bar other) {
@@ -150,6 +197,8 @@ class Bar extends MergeTweenable<Bar>{
     assert(begin.rank == end.rank);
     return new Bar(
         begin.rank,
+        lerpDouble(begin.x, end.x, t),
+        lerpDouble(begin.width, end.width, t),
         lerpDouble(begin.height, end.height, t),
         Color.lerp(begin.color, end.color, t)
     );
@@ -178,39 +227,23 @@ class BarChartPainter extends CustomPainter {
         super(repaint: animation);
   final Animation<BarChart> animation;
 
+  @override
   void paint(Canvas canvas, Size size) {
-    /*
-    Paint：Canvas绘制时使用的样式说明
-      style：是否绘制内部的形状、形状的边缘或两者都有，默认为PaintingStyle.fill
-     */
     final paint = new Paint()..style = PaintingStyle.fill;
-    final linePaint = new Paint()
-      ..style = PaintingStyle.stroke
-      ..color = Colors.white
-      ..strokeWidth = 1.0;
-    final linePath = new Path();
     final chart = animation.value;
-    for(final stack in chart.stacks) {
-      var y = size.height;
-      for (final bar in stack.bars) {
+    for(final stack in chart.groups) {
+      for(final bar in stack.bars) {
         paint.color = bar.color;
         canvas.drawRect(
-            new Rect.fromLTWH(
-                stack.x,
-                y - bar.height,
-                stack.width,
-                bar.height
-            ),
-            paint
+          new Rect.fromLTWH(
+              bar.x,
+              size.height - bar.height,
+              bar.width,
+              bar.height
+          ),
+          paint,
         );
-        if(y < size.height) {
-          linePath.moveTo(stack.x, y);
-          linePath.lineTo(stack.x + stack.width, y);
-        }
-        y -= bar.height;
       }
-      canvas.drawPath(linePath, linePaint);
-      linePath.reset();
     }
   }
 
