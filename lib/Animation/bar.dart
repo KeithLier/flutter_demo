@@ -3,40 +3,49 @@ import 'package:flutter/animation.dart';
 import 'dart:ui' show lerpDouble;
 import 'dart:math';
 import 'color_palette.dart';
+import 'tween.dart';
+
 
 class BarChart {
-  static const int barCount = 7;
-  final List<Bar> bars;
-  BarChart(this.bars);
+
+  final List<BarStack> stacks;
+  BarChart(this.stacks);
 
   factory BarChart.empty(Size size) {
     return new BarChart(
-        <Bar>[]
+        <BarStack>[]
     );
   }
 
   factory BarChart.random(Size size,Random random){
     const barWidthFraction = 0.75;
-    final ranks = selectRanks(random, ColorPalette.primary.length);
-    const minBarDistance = 20.0;
-    // floor()：返回不大于此的最大整数
+    final ranks = selectRanks(random, 10);
     final barCount = ranks.length;
     final barDistance = size.width / (1+barCount);
     final barWidth = barDistance * barWidthFraction;
     final startX = barDistance - barWidth/2;
-    final color = ColorPalette.primary.random(random);
-    final bars = new List.generate(
+    final stacks = new List.generate(
       barCount,
-        (i) => new Bar(
-          ranks[i],
-          startX + i *barDistance,
-          barWidth,
-          random.nextDouble() * size.height,
-          ColorPalette.primary[ranks[i]],
-        ),
+        (i) {
+          final barRanks = selectRanks(random, ColorPalette.primary.length ~/ 2);
+          final bars = new List.generate(
+            barRanks.length,
+            (j) => new Bar(
+              barRanks[j],
+              random.nextDouble() * size.height / 2,
+              ColorPalette.primary[barRanks[j]],
+            )
+          );
+          return new BarStack(
+              ranks[i],
+              startX + i * barDistance,
+              barWidth,
+              bars
+          );
+        }
     );
     return new BarChart(
-      bars
+      stacks
     );
   }
 
@@ -44,8 +53,7 @@ class BarChart {
     final ranks = <int>[];
     var rank = 0;
     while(true) {
-      if(random.nextDouble() < 0.2)
-        rank++;
+      rank += random.nextInt(2);
       if(cap <= rank)
         break;
       ranks.add(rank);
@@ -53,119 +61,95 @@ class BarChart {
     }
     return ranks;
   }
-
-//  static BarChart lerp(BarChart begin, BarChart end, double t) {
-//    final bars = <Bar>[];
-//    final bMax = begin.bars.length;
-//    final eMax = end.bars.length;
-//    var b = 0;
-//    var e = 0;
-//    while(b + e < bMax + eMax) {
-//      /*
-//      这里的条件判断中包含两种情况
-//      b < bMax && e == eMax：
-//        当新图表条形数减少时
-//      b < bMax && begin.bars[b] < end.bars[e]：
-//        当新图表不包含旧图表的颜色条形时
-//      满足一种情况，处理旧图表中多余的条形，即向左侧方清除旧条形
-//       */
-//
-//      if(b < bMax && (e == eMax || begin.bars[b] < end.bars[e])) {
-//        bars.add(Bar.lerp(begin.bars[b], begin.bars[b].collapsed, t));
-//        b++;
-//      } else if (e < eMax && (b == bMax || end.bars[e] < begin.bars[b])) {
-//        /*
-//      这里的条件判断中包含两种情况
-//      e < eMax && b == bMax：
-//        当新图表条形数增加时
-//      e < eMax && end.bars[e] < begin.bars[b]：
-//        当新图表包含旧图表没有的颜色条形时
-//      满足一种情况，处理旧图表中没有的条形，即向右侧方绘制新条形
-//       */
-//        bars.add(Bar.lerp(end.bars[e], end.bars[e].collapsed, t));
-//        e++;
-//      } else {
-//        bars.add(Bar.lerp(begin.bars[b], end.bars[e], t));
-//        b++;
-//        e++;
-//      }
-//    }
-//    return new BarChart(
-//        bars
-//    );
-//  }
-
-  Bar _barOrNull(int index) {
-    return (index<bars.length ? bars[index] : null);
-  }
 }
 
 class BarChartTween extends Tween<BarChart> {
-  final _tweens = <BarTween>[];
+  BarChartTween(BarChart begin, BarChart end)
+      : _stacksTween = new MergeTween<BarStack>(begin.stacks, end.stacks),
+        super(begin: begin, end: end);
 
-  BarChartTween(BarChart begin, BarChart end) : super(begin: begin, end: end) {
-    final bMax = begin.bars.length;
-    final eMax = end.bars.length;
-    var b = 0;
-    var e = 0;
-    while(b + e < bMax + eMax) {
-      /*
-      这里的条件判断中包含两种情况
-      b < bMax && e == eMax：
-        当新图表条形数减少时
-      b < bMax && begin.bars[b] < end.bars[e]：
-        当新图表不包含旧图表的颜色条形时
-      满足一种情况，处理旧图表中多余的条形，即向左侧方清除旧条形
-       */
+  final MergeTween<BarStack> _stacksTween;
 
-      if(b < bMax && (e == eMax || begin.bars[b] < end.bars[e])) {
-        _tweens.add(new BarTween(begin.bars[b], begin.bars[b].collapsed));
-        b++;
-      } else if (e < eMax && (b == bMax || end.bars[e] < begin.bars[b])) {
-        /*
-      这里的条件判断中包含两种情况
-      e < eMax && b == bMax：
-        当新图表条形数增加时
-      e < eMax && end.bars[e] < begin.bars[b]：
-        当新图表包含旧图表没有的颜色条形时
-      满足一种情况，处理旧图表中没有的条形，即向右侧方绘制新条形
-       */
-        _tweens.add(new BarTween(end.bars[e], end.bars[e].collapsed));
-        e++;
-      } else {
-        _tweens.add(new BarTween(begin.bars[b], end.bars[e]));
-        b++;
-        e++;
-      }
-    }
-  }
   @override
   BarChart lerp(double t) => new BarChart(
-    new List.generate(
-      _tweens.length,
-      (i) => _tweens[i].lerp(t)
-    )
+    _stacksTween.lerp(t)
   );
 }
 
-class Bar {
-  Bar(this.rank,this.x, this.width, this.height, this.color);
+
+class BarStack implements MergeTweenable<BarStack> {
+
+  BarStack(this.rank, this.x, this.width, this.bars);
+
   final int rank;
   final double x;
   final double width;
-  final double height;
-  final Color color;
-  Bar get collapsed => new Bar(rank,x, 0.0, 0.0, color);
+  final List<Bar> bars;
 
-  bool operator <(Bar other) {
+  @override
+  // TODO: implement empty
+  BarStack get empty => new BarStack(rank, x, 0.0, <Bar>[]);
+
+  @override
+  bool operator <(BarStack other) {
+    // TODO: implement <
     return rank < other.rank;
   }
+
+  @override
+  Tween<BarStack> tweenTo(BarStack other) {
+    // TODO: implement tweenTo
+    return new BarStackTween(this, other);
+  }
+}
+
+class BarStackTween extends Tween<BarStack> {
+  BarStackTween(BarStack begin, BarStack end)
+    :_barTween = new MergeTween<Bar>(begin.bars, end.bars),
+  super(begin:begin, end: end) {
+    assert(begin.rank == end.rank);
+  }
+
+  final MergeTween<Bar> _barTween;
+
+  @override
+  BarStack lerp(double t) {
+    // TODO: implement lerp
+    return new BarStack(
+        begin.rank,
+        lerpDouble(begin.x, end.x, t),
+        lerpDouble(begin.width, end.width, t),
+        _barTween.lerp(t)
+    );
+  }
+}
+
+class Bar extends MergeTweenable<Bar>{
+  Bar(this.rank, this.height, this.color);
+  final int rank;
+  final double height;
+  final Color color;
+
+  @override
+  // TODO: implement empty
+  Bar get empty => new Bar(rank, 0.0, color);
+
+  @override
+  bool operator <(Bar other) {
+    // TODO: implement <
+    return rank < other.rank;
+  }
+
+  @override
+  Tween<Bar> tweenTo(Bar other) {
+    // TODO: implement tweenTo
+    return new BarTween(this, other);
+  }
+
   static Bar lerp(Bar begin, Bar end, double t) {
     assert(begin.rank == end.rank);
     return new Bar(
         begin.rank,
-        lerpDouble(begin.x, end.x, t),
-        lerpDouble(begin.width, end.width, t),
         lerpDouble(begin.height, end.height, t),
         Color.lerp(begin.color, end.color, t)
     );
@@ -200,18 +184,33 @@ class BarChartPainter extends CustomPainter {
       style：是否绘制内部的形状、形状的边缘或两者都有，默认为PaintingStyle.fill
      */
     final paint = new Paint()..style = PaintingStyle.fill;
+    final linePaint = new Paint()
+      ..style = PaintingStyle.stroke
+      ..color = Colors.white
+      ..strokeWidth = 1.0;
+    final linePath = new Path();
     final chart = animation.value;
-    for(final bar in chart.bars) {
-      paint.color = bar.color;
-      canvas.drawRect(
-        new Rect.fromLTWH(
-          bar.x,
-          size.height - bar.height,
-          bar.width,
-          bar.height
-        ),
-        paint
-      );
+    for(final stack in chart.stacks) {
+      var y = size.height;
+      for (final bar in stack.bars) {
+        paint.color = bar.color;
+        canvas.drawRect(
+            new Rect.fromLTWH(
+                stack.x,
+                y - bar.height,
+                stack.width,
+                bar.height
+            ),
+            paint
+        );
+        if(y < size.height) {
+          linePath.moveTo(stack.x, y);
+          linePath.lineTo(stack.x + stack.width, y);
+        }
+        y -= bar.height;
+      }
+      canvas.drawPath(linePath, linePaint);
+      linePath.reset();
     }
   }
 
