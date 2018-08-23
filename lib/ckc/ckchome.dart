@@ -59,6 +59,37 @@ class CKCHomeState extends State<CKCHome> {
     });
   }
 
+  void _onSelected(Choice choice) {
+    int index = choices.indexOf(choice);
+    if(index == 0) {
+      Navigator.of(context).push(
+          new MaterialPageRoute(
+              builder: (context){
+                return landing ? new Message() : new SignIn();
+              }
+          )
+      );
+    }
+    if(index == 1) {
+      Navigator.of(context).push(
+          new MaterialPageRoute(
+              builder: (context){
+                return AnimationPage();
+              }
+          )
+      );
+    }
+    if(index == 2) {
+      Navigator.of(context).push(
+          new MaterialPageRoute(
+              builder: (context){
+                return Server();
+              }
+          )
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -72,17 +103,18 @@ class CKCHomeState extends State<CKCHome> {
           title: new Text('首页'),
           backgroundColor: Colors.grey[200],
           actions: <Widget>[
-            new IconButton(
-                icon: new Icon(Icons.message),
-                onPressed: () {
-                  Navigator.of(context).push(
-                      new MaterialPageRoute(
-                          builder: (context){
-                            return landing ? new Message() : new SignIn();
-                          }
-                      )
+            new PopupMenuButton<Choice>(
+              onSelected: _onSelected,
+              itemBuilder: (BuildContext context) {
+                return choices.map((Choice choice) {
+                  return new PopupMenuItem(
+                    value: choice,
+                    child: new Text(choice.title)
                   );
-                })
+                }).toList();
+              },
+              icon: new Icon(Icons.add),
+            ),
           ],
         ),
         body: new Center(
@@ -96,32 +128,6 @@ class CKCHomeState extends State<CKCHome> {
                   onPressed: getIPAddress,
                   child: new Text('Get IP address'),
               ),
-              new SizedBox(height: 32.0),
-              new RaisedButton(
-                child: new Text('Build HTTP Server'),
-                  onPressed: (){
-                    Navigator.of(context).push(
-                        new MaterialPageRoute(
-                            builder: (context){
-                              return Server();
-                            }
-                        )
-                    );
-                  }
-              ),
-              new SizedBox(height: 32.0),
-              new RaisedButton(
-                  child: new Text('Flutter Animation'),
-                  onPressed: (){
-                    Navigator.of(context).push(
-                        new MaterialPageRoute(
-                            builder: (context){
-                              return AnimationPage();
-                            }
-                        )
-                    );
-                  }
-              )
             ],
           ),
         ),
@@ -129,3 +135,15 @@ class CKCHomeState extends State<CKCHome> {
     );
   }
 }
+
+class Choice {
+  const Choice({this.title, this.icon});
+  final String title;
+  final IconData icon;
+}
+
+const List<Choice> choices = const <Choice>[
+  const Choice(title:'Message',icon: Icons.message),
+  const Choice(title:'Animation',icon: Icons.rotate_left),
+  const Choice(title:'Http Server',icon: Icons.network_cell),
+];
