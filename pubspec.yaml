@@ -45,6 +45,7 @@ flutter:
       - images/sign_in_bg.jpg
       - images/sign_up_bg.jpg
       - images/logo.png
+      - images/data_empty.png
 
 
   # To add assets to your application, add an assets section, like this:

@@ -20,9 +20,44 @@ class DailyList extends StatefulWidget {
 
 class DailyListState extends State<DailyList> {
 
+  Future<String> get(String url) async {
+    var httpClicent = new HttpClient();
+    var req = await httpClicent.getUrl(Uri.parse(url));
+    var res = await req.close();
+    return await res.transform(utf8.decoder).join();
+  }
+
+  Future<Null> loadData() async {
+    print('是否进入了');
+    await get(widget.url);
+    if(!mounted)
+      return;
+
+    setState(() {
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return null;
+    return new RefreshIndicator(
+        child: new FutureBuilder(
+            future: get(widget.url),
+            builder:(BuildContext context, AsyncSnapshot snapshot) {
+              switch(snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.waiting:
+                  return ext.buildLoadingIndicator();
+                default:
+                  if(snapshot.hasError) {
+                    return ext.buildExceptionIndicator(snapshot.error);
+                  }
+                  return ext.buildDailyListView(context, snapshot);
+              }
+            }
+        ),
+        onRefresh: loadData
+    );
   }
 }

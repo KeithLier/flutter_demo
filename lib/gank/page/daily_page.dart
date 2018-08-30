@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/gank/net/daily_list.dart';
 
 class DailyPage extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class DailyPage extends StatefulWidget {
 class DailyPageState extends State<DailyPage> {
   DateTime selectedDate = new DateTime.now();
 
-  final String url = 'https://gank.io/api/today';
+  final String url = 'https://gank.io/api/day';
   var category = [];
   var results = {};
 
@@ -77,36 +78,8 @@ class DailyPageState extends State<DailyPage> {
           )
         ],
       ),
-      body: new RefreshIndicator(
-          child: new FutureBuilder(
-              builder: (BuildContext context,AsyncSnapshot snapshot){
-                switch (snapshot.connectionState) {
-                  case ConnectionState.none:
-                  case ConnectionState.waiting:
-                    return new Center(
-                      child: new CupertinoActivityIndicator(),
-                    );
-                  default:
-                    if (snapshot.hasError) {
-                      return new Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          new Align(
-                            alignment: Alignment.center,
-                            child: new Image.asset('images/empty_data.png'),
-                          ),
-                          new Align(
-                            alignment: Alignment.center,
-                            child: new Text(snapshot.error, style: const TextStyle(color: Colors.grey),),
-                          )
-                        ],);
-                    } else {
-                      return null;
-                    }
-                }
-              }
-          ),
-          onRefresh: loadData
+      body: new DailyList(
+        url: url + '/' + selectedDate.year.toString() + '/' + selectedDate.month.toString() + '/' + selectedDate.day.toString()
       )
     );
   }
