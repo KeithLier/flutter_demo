@@ -17,45 +17,19 @@ class DailyPage extends StatefulWidget {
 class DailyPageState extends State<DailyPage> {
   DateTime selectedDate = new DateTime.now();
 
-  final String url = 'https://gank.io/api/day';
-  var category = [];
-  var results = {};
-
-  Future<Null> loadData() async {
-    var httpClient = new HttpClient();
-
-    String result;
-    try {
-      var rUrl = url + '/' + selectedDate.year.toString() + '/' + selectedDate.month.toString() + '/' + selectedDate.day.toString();
-      var request = await httpClient.getUrl(Uri.parse(url));
-      var response = await request.close();
-      if(response.statusCode == HttpStatus.OK) {
-        var json = await response.transform(UTF8.decoder).join();
-        var data = JSON.decode(json);
-        var category = data['category'];
-        var result = data['result'];
-        setState(() {
-          category = category;
-          result = result;
-        });
-      } else {
-        result = 'Error:\nHttp status ${response.statusCode}';
-      }
-    } catch (exception) {
-      result = 'Failed';
-    }
-  }
+  String url = 'https://gank.io/api/today';
 
   Future<Null> selectDate(BuildContext context) async {
     final DateTime picker = await showDatePicker(
         context: context,
         initialDate: selectedDate,
-        firstDate: new DateTime(2016,1),
+        firstDate: new DateTime(2015,1),
         lastDate: new DateTime(2100,1)
     );
     if(picker != null && picker != selectedDate) {
       setState(() {
         selectedDate = picker;
+        url = 'https://gank.io/api/day' + '/' + selectedDate.year.toString() + '/' + selectedDate.month.toString() + '/' + selectedDate.day.toString();
       });
     }
   }
@@ -79,7 +53,7 @@ class DailyPageState extends State<DailyPage> {
         ],
       ),
       body: new DailyList(
-        url: url + '/' + selectedDate.year.toString() + '/' + selectedDate.month.toString() + '/' + selectedDate.day.toString()
+        url: url,
       )
     );
   }

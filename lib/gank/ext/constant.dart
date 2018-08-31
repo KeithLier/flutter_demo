@@ -59,6 +59,8 @@ Widget buildLoadingIndicator() {
 Widget buildDailyListView(BuildContext context, AsyncSnapshot snapshot) {
   Map<String, dynamic> value;
   List content = new List();
+  List title = new List();
+
   value = jsonDecode(snapshot.data);
   DailyResponse res = DailyResponse.fromJson(value);
 
@@ -68,8 +70,16 @@ Widget buildDailyListView(BuildContext context, AsyncSnapshot snapshot) {
     if(res.category.length == 0) {
       return buildExceptionIndicator('没有对应的数据');
     } else {
+      //这里多做一层循环，主要是为了将福利展示在最前面
       res.category.forEach((row) {
-        content.add(res.results[row]);
+        if (row == '福利') {
+          title.insert(0, row);
+        } else {
+          title.add(row);
+        }
+      });
+      title.forEach((title) {
+        content.addAll(res.results[title]);
       });
       return buildListViewBuilder(context, content);
     }
