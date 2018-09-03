@@ -7,7 +7,7 @@ import 'message.dart';
 import 'sign.dart';
 import 'package:flutter_app/server/server.dart';
 import 'package:flutter_app/Animation/Animation.dart';
-import 'package:flutter_app/gank/page/daily_page.dart';
+import 'package:flutter_app/gank/page/gank.dart';
 
 class CKCHome extends StatefulWidget {
   CKCHome({Key key, this.title}) : super(key: key);
@@ -58,26 +58,6 @@ class CKCHomeState extends State<CKCHome> {
     setState(() {
       IPAddress = result;
     });
-  }
-
-  getMerge() async {
-    var url = 'https://gank.io/api/today';
-    var httpClient = new HttpClient();
-
-    String result;
-    try {
-      var request = await httpClient.getUrl(Uri.parse(url));
-      var response = await request.close();
-      if(response.statusCode == HttpStatus.OK) {
-        var json = await response.transform(UTF8.decoder).join();
-        var data = JSON.decode(json);
-
-      } else {
-        result = 'Error:\nHttp status ${response.statusCode}';
-      }
-    } catch (exception) {
-      result = 'Failed';
-    }
   }
 
   void _onSelected(Choice choice) {
@@ -155,7 +135,7 @@ class CKCHomeState extends State<CKCHome> {
                   Navigator.of(context).push(
                       new MaterialPageRoute(
                           builder: (context){
-                            return DailyPage();
+                            return GankPage();
                           }
                       )
                   );
