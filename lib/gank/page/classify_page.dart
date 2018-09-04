@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/gank/net/classify_list.dart';
 
 class ClassifyPage extends StatefulWidget {
   @override
@@ -8,7 +9,24 @@ class ClassifyPage extends StatefulWidget {
   }
 }
 
-class ClassifyPageState extends State<ClassifyPage> {
+class ClassifyPageState extends State<ClassifyPage> with SingleTickerProviderStateMixin {
+
+  TabController controller;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = new TabController(length: allPages.length, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    controller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -16,10 +34,57 @@ class ClassifyPageState extends State<ClassifyPage> {
       appBar: new AppBar(
         title: new Text('分类阅读'),
         backgroundColor: Colors.grey[100],
+        bottom: new TabBar(
+          controller: controller,
+          indicatorColor: Theme.of(context).primaryColor,
+          isScrollable: true,
+          tabs: allPages.map((Page page){
+            return new Tab(text: page.text,);
+          }).toList(),
+        ),
+        actions: <Widget>[
+//          new Padding(padding: const EdgeInsets.all(4.0),
+//            child: new IconButton(
+//              icon: new Icon(Icons.reorder),
+//              onPressed: () {
+//              },),
+//          ),
+          new Padding(padding: const EdgeInsets.all(4.0),
+            child: new IconButton(
+              icon: new Icon(Icons.search),
+              onPressed: () {
+
+              },),),
+        ],
       ),
-      body: new Center(
-        child: new Text('敬请期待')
+      body: new TabBarView(
+        controller: controller,
+        children: allPages.map((Page page) {
+          return page.classifyList;
+        }).toList(),
       ),
     );
   }
 }
+
+class Page {
+
+  Page({this.icon, this.text, this.classifyList});
+
+  final IconData icon;
+  final String text;
+  final ClassifyList classifyList;
+}
+
+final List<Page> allPages = <Page> [
+  new Page(text: 'All', classifyList: new ClassifyList(classifyType: ('all'))),
+  new Page(text: 'iOS', classifyList: new ClassifyList(classifyType: ('iOS'))),
+  new Page(text: 'Android', classifyList: new ClassifyList(classifyType: ('Android'))),
+  new Page(text: '瞎推荐', classifyList: new ClassifyList(classifyType: ('瞎推荐'))),
+  new Page(text: '前端', classifyList: new ClassifyList(classifyType: ('前端'))),
+  new Page(text: '拓展资源', classifyList: new ClassifyList(classifyType: ('拓展资源'))),
+  new Page(text: 'App', classifyList: new ClassifyList(classifyType: ('App'))),
+  new Page(text: '休息视频', classifyList: new ClassifyList(classifyType: ('休息视频'))),
+  new Page(text: '福利', classifyList: new ClassifyList(classifyType: ('福利'))),
+
+];

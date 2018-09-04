@@ -12,6 +12,19 @@ class DailyResponse {
         results = json['results'];
 }
 
+class CategoryResponse {
+  bool error;
+  List<dynamic> results;
+
+  CategoryResponse(this.error, this.results);
+
+  CategoryResponse.fromJson(Map<String, dynamic> json){
+    this.error = json['error'];
+    this.results = json['results'];
+  }
+
+}
+
 class PostData {
   String _id;
   String createdAt;
