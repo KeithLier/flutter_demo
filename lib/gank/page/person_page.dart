@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'draw_page.dart';
 
 class PersonPage extends StatefulWidget {
   @override
@@ -17,9 +18,21 @@ class PersonPageState extends State<PersonPage> {
         title: new Text('我的'),
         backgroundColor: Colors.grey[100],
       ),
-      body: new Center(
-          child: new Text('敬请期待')
+      drawer: new Drawer(
+        child: new DrawPage(
+
+        ),
       ),
+      body: new SingleChildScrollView(
+        child: new Container(
+          color: new Color(0xFFEBEBEB),
+          child: new Column(
+            children: <Widget>[
+
+            ],
+          ),
+        ),
+      )
     );
   }
 }

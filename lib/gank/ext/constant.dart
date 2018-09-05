@@ -121,7 +121,7 @@ Widget buildRow(context, one) {
               children: <Widget>[
                 new Positioned.fill(
                     child: new FadeInImage.assetNetwork(
-                      placeholder: 'image/data_empty.png',
+                      placeholder: 'images/data_empty.png',
                       image: postData.url,
                       fit: BoxFit.cover,
                       repeat: ImageRepeat.repeat,

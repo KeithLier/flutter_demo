@@ -91,8 +91,6 @@ class ClassifyListPage extends State<ClassifyList> {
           onRefresh: pullToRefresh
       );
     }
-    // TODO: implement build
-    return null;
   }
 
   Widget buildListView(BuildContext context, List results) {
