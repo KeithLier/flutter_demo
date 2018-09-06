@@ -10,8 +10,9 @@ import 'package:flutter_app/gank/ext/constant.dart' as ext;
 
 class ClassifyList extends StatefulWidget {
   String classifyType;
+  bool showTitle = false;
 
-  ClassifyList({Key key, this.classifyType}) :super(key: key);
+  ClassifyList({Key key, this.classifyType, this.showTitle}) :super(key: key);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -80,6 +81,33 @@ class ClassifyListPage extends State<ClassifyList> {
 
   @override
   Widget build(BuildContext context) {
+//    if(listData == null) {
+//      return new Center(
+//        child: new CupertinoActivityIndicator(),
+//      );
+//    } else {
+//      Widget listView = buildListView(context, listData);
+//      return new RefreshIndicator(
+//          child: listView,
+//          onRefresh: pullToRefresh
+//      );
+//    }
+    if(widget.showTitle) {
+      return new Scaffold(
+        appBar: new AppBar(
+          title: new Text(widget.classifyType),
+          backgroundColor: Colors.grey[200],
+        ),
+        body: buildList(context),
+      );
+    } else {
+      return new Scaffold(
+        body: buildList(context),
+      );
+    }
+  }
+
+  Widget buildList(BuildContext context) {
     if(listData == null) {
       return new Center(
         child: new CupertinoActivityIndicator(),

@@ -12,22 +12,35 @@ class PersonPage extends StatefulWidget {
 class PersonPageState extends State<PersonPage> {
 
   routePageBuilder(BuildContext context, String title) {
-    Navigator.of(context).push(new PageRouteBuilder(
-        opaque: false,
-        pageBuilder: (BuildContext context, _, __) {
-          return new ClassifyList(
-            classifyType: title,
-          );
-        },
-        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
-          return new FadeTransition(
-            opacity: animation,
-            child: new FadeTransition(
-              opacity: new Tween<double>(begin: 0.5, end: 1.0).animate(animation),
-              child: child,
-            ),
-          );
-        }));
+    Navigator.of(context).push(
+        new MaterialPageRoute(
+            builder: (context){
+              return new ClassifyList(
+                classifyType: title,
+                showTitle: true,
+              );
+            }
+        )
+    );
+
+//    Navigator.of(context).push(new PageRouteBuilder(
+//        opaque: false,
+//        pageBuilder: (BuildContext context, _, __) {
+//          return new ClassifyList(
+//            classifyType: title,
+//            showTitle: true,
+//          );
+//        },
+//        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+//          return new FadeTransition(
+//            opacity: animation,
+//            child: new FadeTransition(
+//              opacity: new Tween<double>(begin: 0.5, end: 1.0).animate(animation),
+//              child: child,
+//            ),
+//          );
+//        })
+//    );
   }
 
 
@@ -73,7 +86,7 @@ class PersonPageState extends State<PersonPage> {
                   width: MediaQuery.of(context).size.width / 3,
                   child: new FlatButton(
                     onPressed: (){
-//                      routePageBuilder(context,item.url);
+                      routePageBuilder(context,item.url);
                     },
                     child: new Container(
                       child: new Column(
@@ -112,7 +125,7 @@ class PersonPageState extends State<PersonPage> {
                   width: MediaQuery.of(context).size.width / 3,
                   child: new FlatButton(
                       onPressed: (){
-//                        routePageBuilder(context,item.url);
+                        routePageBuilder(context,item.url);
                       },
                       child: new Container(
                         child: new Column(
@@ -151,7 +164,7 @@ class PersonPageState extends State<PersonPage> {
                   width: MediaQuery.of(context).size.width / 3,
                   child: new FlatButton(
                       onPressed: (){
-//                        routePageBuilder(context,item.url);
+                        routePageBuilder(context,item.url);
                       },
                       child: new Container(
                         child: new Column(
