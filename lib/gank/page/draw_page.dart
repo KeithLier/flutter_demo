@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 
 class DrawPage extends StatelessWidget {
   @override
@@ -58,7 +59,13 @@ class DrawPage extends StatelessWidget {
           title: new Text('登出'),
           leading: new Icon(Icons.exit_to_app),
           onTap: () {
-
+            Navigator.of(context).push(
+                new MaterialPageRoute(
+                    builder: (context){
+                      return new LoginPage();
+                    }
+                )
+            );
           },
         ),
       ],
