@@ -77,14 +77,14 @@ class Page {
 }
 
 final List<Page> allPages = <Page> [
-  new Page(text: 'All', classifyList: new ClassifyList(classifyType: ('all'))),
-  new Page(text: 'iOS', classifyList: new ClassifyList(classifyType: ('iOS'))),
-  new Page(text: 'Android', classifyList: new ClassifyList(classifyType: ('Android'))),
-  new Page(text: '瞎推荐', classifyList: new ClassifyList(classifyType: ('瞎推荐'))),
-  new Page(text: '前端', classifyList: new ClassifyList(classifyType: ('前端'))),
-  new Page(text: '拓展资源', classifyList: new ClassifyList(classifyType: ('拓展资源'))),
-  new Page(text: 'App', classifyList: new ClassifyList(classifyType: ('App'))),
-  new Page(text: '休息视频', classifyList: new ClassifyList(classifyType: ('休息视频'))),
-  new Page(text: '福利', classifyList: new ClassifyList(classifyType: ('福利'))),
+  new Page(text: 'All', classifyList: new ClassifyList(classifyType: ('all'), showTitle: false,)),
+  new Page(text: 'iOS', classifyList: new ClassifyList(classifyType: ('iOS'), showTitle: false,)),
+  new Page(text: 'Android', classifyList: new ClassifyList(classifyType: ('Android'), showTitle: false,)),
+  new Page(text: '瞎推荐', classifyList: new ClassifyList(classifyType: ('瞎推荐'), showTitle: false,)),
+  new Page(text: '前端', classifyList: new ClassifyList(classifyType: ('前端'), showTitle: false,)),
+  new Page(text: '拓展资源', classifyList: new ClassifyList(classifyType: ('拓展资源'), showTitle: false,)),
+  new Page(text: 'App', classifyList: new ClassifyList(classifyType: ('App'), showTitle: false,)),
+  new Page(text: '休息视频', classifyList: new ClassifyList(classifyType: ('休息视频'), showTitle: false,)),
+  new Page(text: '福利', classifyList: new ClassifyList(classifyType: ('福利'), showTitle: false,)),
 
 ];

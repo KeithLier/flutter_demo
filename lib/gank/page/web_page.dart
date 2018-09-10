@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:flutter_app/gank/ext/share.dart';
 
 class WebPage extends StatefulWidget {
   final Map<String, dynamic> post;
@@ -102,7 +103,7 @@ class WebPageState extends State<WebPage> {
             child: new IconButton(
                 icon: new Icon(Icons.share),
                 onPressed: (){
-
+                  SharePage.buildShareBottomPop(context);
                 }
             ),
           ),

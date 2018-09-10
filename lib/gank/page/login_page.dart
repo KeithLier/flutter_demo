@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/gank/ext/share.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -32,7 +33,7 @@ class LoginPageState extends State<LoginPage> {
                 child: new Text('其他登录方式'),
               ),
               onTap: () {
-
+                SharePage.buildShareBottomPop(context);
               },
             )
           ],

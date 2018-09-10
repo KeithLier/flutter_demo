@@ -49,6 +49,11 @@ flutter:
       - images/data_empty.png
       - images/header.jpg
       - images/profile_cover.jpg
+      - images/icon_wx.png
+      - images/icon_circle.png
+      - images/icon_qq.png
+      - images/icon_sina.png
+      - images/icon_msg.png
 
 
   # To add assets to your application, add an assets section, like this:
