@@ -11,17 +11,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a681a90d-84ad-4eaf-8965-d6ae272a9ced" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/gank/ext/http.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/gank/ext/http.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/gank/page/login_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/gank/page/login_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Animation/Animation.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Animation/bar.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Animation/color_palette.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Animation/tween.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ckc/ckchome.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ckc/message.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ckc/promptPage.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ckc/sign.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ckc/signup.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/contact.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/discover.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flip_panel.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/friends.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/home.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/me.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/myInfo.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/myWallet.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/server/server.dart" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -68,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/android/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="664">
-              <caret line="52" column="46" lean-forward="true" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+              <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -82,29 +92,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pubspec.yaml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pubspec.yaml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+              <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/ckc/signup.dart">
+      <file leaf-file-name="gank.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/gank/page/gank.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="82" column="34" selection-start-line="82" selection-start-column="34" selection-end-line="82" selection-end-column="34" />
+            <state relative-caret-position="510">
+              <caret line="37" column="38" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sign.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/ckc/sign.dart">
+      <file leaf-file-name="main.dart" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="67" column="34" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
+            <state relative-caret-position="375">
+              <caret line="25" column="56" lean-forward="true" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="platform.dart" pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/foundation/platform.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -198,17 +220,17 @@
         <option value="$PROJECT_DIR$/lib/gank/page/web_page.dart" />
         <option value="$PROJECT_DIR$/lib/gank/ext/share.dart" />
         <option value="$PROJECT_DIR$/lib/myInfo.dart" />
-        <option value="$PROJECT_DIR$/lib/main.dart" />
         <option value="$PROJECT_DIR$/lib/gank/ext/http.dart" />
         <option value="$PROJECT_DIR$/lib/gank/page/login_page.dart" />
         <option value="$PROJECT_DIR$/android/build.gradle" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/lib/main.dart" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="33" />
-    <option name="y" value="30" />
+    <option name="x" value="59" />
+    <option name="y" value="210" />
     <option name="width" value="1865" />
     <option name="height" value="1130" />
   </component>
@@ -232,13 +254,12 @@
             <path>
               <item name="flutter_app" type="b2602c69:ProjectViewProjectNode" />
               <item name="flutter_app" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="flutter_app" type="b2602c69:ProjectViewProjectNode" />
               <item name="flutter_app" type="462c0819:PsiDirectoryNode" />
-              <item name="android" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -374,7 +395,7 @@
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.4978701" weight="0.32876712" />
-      <window_info active="true" anchor="bottom" id="Messages" order="14" visible="true" weight="0.32850242" />
+      <window_info anchor="bottom" id="Messages" order="14" visible="true" weight="0.32850242" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info id="Image Layers" order="6" />
       <window_info anchor="bottom" id="Build Variants" order="2" sideWeight="0.59371674" side_tool="true" weight="0.21339713" />
@@ -389,7 +410,7 @@
       <window_info id="Captures" order="4" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4906367" visible="true" weight="0.16236971" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4906367" visible="true" weight="0.16236971" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Device File Explorer" order="15" sideWeight="0.39829606" side_tool="true" weight="0.21428572" />
       <window_info anchor="right" id="Theme Preview" order="5" />
@@ -415,13 +436,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/Animation/Animation.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/Animation/bar.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -529,13 +543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="44" selection-start-line="43" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/gank/page/gank.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="37" column="38" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -661,13 +668,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/gank/ext/constant.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1770">
@@ -744,7 +744,7 @@
     <entry file="file://$PROJECT_DIR$/android/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="664">
-          <caret line="52" column="46" lean-forward="true" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -758,7 +758,31 @@
     <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="25" lean-forward="true" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/gank/page/gank.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="37" column="38" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="56" lean-forward="true" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/flutter/packages/flutter/lib/src/foundation/platform.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="19" column="2" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
         </state>
       </provider>
     </entry>

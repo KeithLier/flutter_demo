@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'app.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_app/gank/page/gank.dart';
 
 final ThemeData kIOSTheme = new ThemeData(
   primarySwatch: Colors.orange,
@@ -14,9 +12,6 @@ final ThemeData kAndroidTheme = new ThemeData(
   primarySwatch: Colors.purple,
   accentColor: Colors.orangeAccent[400],
 );
-
-final analytics = new FirebaseAnalytics();
-final auth = FirebaseAuth.instance;
 
 void main() {
   runApp(new MyApp());
@@ -31,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: defaultTargetPlatform == TargetPlatform.iOS
           ? kIOSTheme
           : kAndroidTheme,
-      home: new AppMain(title: 'Flutter Demo Home Page'),
+      home: new GankPage(),
     );
   }
 }
