@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/gank/ext/share.dart';
+//import 'package:flutter_app/gank/ext/http.dart';
+import 'package:http/http.dart' as Http;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,6 +17,25 @@ class LoginPageState extends State<LoginPage> {
   GlobalKey<ScaffoldState> regisKey = new GlobalKey();
   String phoneNum = '';
   String password = '';
+
+  void login() async {
+    var headers = {
+      'X-Bmob-Application-Id':'3cffba5dd27a414d9ff6485315cca823',
+      'X-Bmob-REST-API-Key':'3eeb7549f2c675897b4e766fa0235940'
+    };
+    var body;
+    body = {
+      'name':'unknown',
+      'phone': phoneNum,
+      'password': password
+    };
+
+//    HttpExt.postHeader('https://api2.bmob.cn/1/classes/member',(data){
+//
+//    });
+    Http.Response response = await Http.post('https://api2.bmob.cn/1/classes/member',headers: headers,body: body);
+    print(response.body);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +138,7 @@ class LoginPageState extends State<LoginPage> {
               padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
               child: new RaisedButton(
                 onPressed: () {
-
+                  login();
                 },
                 padding: new EdgeInsets.fromLTRB(130.0, 10.0, 130.0, 10.0),
                 color: Colors.blue,

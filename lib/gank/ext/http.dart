@@ -26,4 +26,18 @@ class HttpExt {
       }
     }
   }
+
+  static void postHeader(String url, Function callback, {Map<String, String> header,Map<String, String> params, Function errorCallback}) async {
+    try {
+      http.Response res = await http.post(url, headers: header, body: params);
+      if (callback != null) {
+        callback(res.body);
+      }
+    } catch (e) {
+      if (errorCallback != null) {
+        errorCallback(e);
+      }
+    }
+  }
+
 }
