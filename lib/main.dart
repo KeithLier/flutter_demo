@@ -10,7 +10,9 @@ final ThemeData kIOSTheme = new ThemeData(
 
 final ThemeData kAndroidTheme = new ThemeData(
   primarySwatch: Colors.purple,
-  accentColor: Colors.orangeAccent[400],
+  primaryColor: Colors.black,
+//  accentColor: Colors.orangeAccent[400],
+  primaryColorBrightness: Brightness.light,
 );
 
 void main() {
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: defaultTargetPlatform == TargetPlatform.iOS
           ? kIOSTheme
-          : kAndroidTheme,
+          : kIOSTheme,
       home: new GankPage(),
     );
   }
