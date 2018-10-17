@@ -17,10 +17,10 @@ PODS:
   - firebase_auth (0.0.1):
     - Firebase/Auth
     - Firebase/Core
-    - FirebaseUI/Auth (~> 3.0)
-    - FirebaseUI/Google
     - Flutter
-    - Google/SignIn
+  - firebase_core (0.0.1):
+    - Firebase/Core
+    - Flutter
   - firebase_database (0.0.1):
     - Firebase/Database
     - Flutter
@@ -44,22 +44,12 @@ PODS:
   - FirebaseStorage (1.1.0):
     - FirebaseAnalytics (~> 3.7)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseUI/Auth (3.1.1):
-    - Firebase/Auth
-  - FirebaseUI/Google (3.1.1):
-    - FirebaseUI/Auth
-    - GoogleSignIn (~> 4.0)
   - Flutter (1.0.0)
   - flutter_webview_plugin (0.0.1):
     - Flutter
-  - Google/Core (3.1.0):
-    - FirebaseAnalytics (~> 3.2)
-  - Google/SignIn (3.1.0):
-    - Google/Core
-    - GoogleSignIn (~> 4.0)
   - google_sign_in (0.0.1):
     - Flutter
-    - Google/SignIn (~> 3.0)
+    - GoogleSignIn (~> 4.0)
   - GoogleSignIn (4.0.2):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
@@ -90,6 +80,7 @@ PODS:
 DEPENDENCIES:
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
+  - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_database (from `.symlinks/plugins/firebase_database/ios`)
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `.symlinks/flutter/ios`)
@@ -107,8 +98,6 @@ SPEC REPOS:
     - FirebaseDatabase
     - FirebaseInstanceID
     - FirebaseStorage
-    - FirebaseUI
-    - Google
     - GoogleSignIn
     - GoogleToolboxForMac
     - GTMOAuth2
@@ -119,6 +108,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/firebase_analytics/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
+  firebase_core:
+    :path: ".symlinks/plugins/firebase_core/ios"
   firebase_database:
     :path: ".symlinks/plugins/firebase_database/ios"
   firebase_storage:
@@ -136,21 +127,20 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
-  firebase_analytics: 8f2570c7175ac9e1138e0b6e3451860da0f76b5f
-  firebase_auth: 3bd59bb0b230427fd396ebccdf7511a79329ed7b
-  firebase_database: a5b2f9b0ebc0522135032c93000d0c1184116eb1
-  firebase_storage: d160b0c01316d9c54e4c1d99e318cbbc638746d1
+  firebase_analytics: fcc60a9de4b8e07aa5af8941303a7f5fe6e0383f
+  firebase_auth: 27a5a77a032d557c18f8e223aaf8ec1368f6cdbc
+  firebase_core: c96aa8b2fcf7f5167d32f22034f502f9304952b8
+  firebase_database: dd62ab9f71967c9011ce2fd03a89e762dcc364df
+  firebase_storage: e34d30ff8bb57e691191b70e9d255ec2eba2351f
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
-  FirebaseUI: 6e99ff95e369f5858232e4f65bff215458fe8469
   Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
   flutter_webview_plugin: 116575b48572029304775b768e9f15ebfc316274
-  Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
-  google_sign_in: 7de06f025e02c18297e2a534eca5f2840cf90a56
+  google_sign_in: cbeb57b96679823d14df6b2240b629b983a42d79
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d

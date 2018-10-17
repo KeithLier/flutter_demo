@@ -182,7 +182,7 @@ class ChatMessage extends StatelessWidget {
             new Container(
               margin: const EdgeInsets.only(right: 16.0),
               child: new GoogleUserCircleAvatar(
-                  googleSignIn.currentUser.photoUrl
+//                  googleSignIn.currentUser.photoUrl
               ),
             ),
             new Column(
