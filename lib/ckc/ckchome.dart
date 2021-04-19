@@ -44,7 +44,7 @@ class CKCHomeState extends State<CKCHome> {
       var response = await request.close();
       if(response.statusCode == HttpStatus.OK) {
         var json = await response.transform(utf8.decoder).join();
-        var data = JSON.decode(json);
+        var data = jsonDecode(json);
         result = data['origin'];
       } else {
         result = 'Error getting IP address:\nHttp status ${response.statusCode}';
